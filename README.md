@@ -1,3 +1,3 @@
-## server
+## Galax Tech
 
-server link : https://github.com/mir-hussain/moon-tech-server
+server link : https://github.com/neyaznafiz/Galaxy-Tech_Server
