@@ -10,7 +10,6 @@ function ProductProvider({ children }) {
     axios.get("http://localhost:5000/products").then((res) => {
       const data = res;
       setData(data.data);
-      console.log(data.data);
     });
   }, []);
 
@@ -18,8 +17,7 @@ function ProductProvider({ children }) {
     data,
   };
 
-  return
-  <CONTEXT.Provider value={value}>{children}</CONTEXT.Provider>;
+  return <CONTEXT.Provider value={value}>{children}</CONTEXT.Provider>;
 }
 
 export const useProducts = () => {
