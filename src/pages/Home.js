@@ -30,13 +30,13 @@ const Home = () => {
     );
   }
   
-  if (!loading && !error && products.length === 0) {
+  if (!loading && !error && products?.length === 0) {
     content = <p>Nothing to show, Product list is empty..!</p>
   }
   
-  if (!loading && !error && products.length) {
+  if (!loading && !error && products?.length) {
     content = products.map((product) => (
-      <ProductCard key={product._id} product={product} />
+      <ProductCard key={product?._id} product={product} />
     ));
   }
 
