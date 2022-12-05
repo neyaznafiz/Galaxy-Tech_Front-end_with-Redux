@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  console.log(products);
+  // console.log(products);
 
   useEffect(() => {
     axios.get("products.json").then((res) => {
@@ -12,6 +13,9 @@ const Home = () => {
       setProducts(data.data);
     });
   }, []);
+
+  const state = useSelector((state) => state);
+  console.log(state);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10">
