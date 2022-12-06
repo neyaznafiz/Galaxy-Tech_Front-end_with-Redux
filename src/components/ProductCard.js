@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
       key={product._id}
     >
       {pathname.includes("cart") && (
-        <div className="bg-[#ccac00] text-white text-xl px-4 rounded-full absolute top-0 right-0">
+        <div className="bg-[#ccac00] text-white text-xl px-4 rounded-full absolute top-2 right-2">
           <p>{product.quantity}</p>
         </div>
       )}
