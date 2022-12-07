@@ -30,9 +30,20 @@ const Home = () => {
     ));
   }
 
-  if (products.length && stock) {
+  if (products.length && (stock || brands.length)) {
     content = products
-      .filter((product) => product.status === true)
+      .filter((product) => {
+        if (stock) {
+          return product.status === true;
+        }
+        return product;
+      })
+      .filter((product) => {
+        if (brands.length) {
+          return brands.includes(product.brand);
+        }
+        return product;
+      })
       .map((product) => <ProductCard key={product._id} product={product} />);
   }
 
