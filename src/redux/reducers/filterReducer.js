@@ -34,7 +34,13 @@ const filterReducer = (state = initialState, action) => {
 
     // stock toggle
     case TOGGLE_STOCK:
-      return {};
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          stock: !state.filters.stock,
+        },
+      };
 
     default:
       return state;
