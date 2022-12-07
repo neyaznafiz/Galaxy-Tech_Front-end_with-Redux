@@ -8,7 +8,7 @@ import {
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  console.log(products);
+  // console.log(products);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filter.filters);
   const { brands, stock } = filters;
