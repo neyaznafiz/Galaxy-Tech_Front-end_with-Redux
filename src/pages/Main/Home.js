@@ -8,11 +8,11 @@ import {
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  // console.log(products);
+  console.log(products);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filter.filters);
   const { brands, stock } = filters;
-  console.log(brands, stock);
+  // console.log(brands, stock);
 
   const activeClass = "text-white bg-[#ccac00] border-white";
 
@@ -21,6 +21,20 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data.data));
   }, []);
+
+  let content;
+
+  if (products.length) {
+    content = products.map((product) => (
+      <ProductCard key={product._id} product={product} />
+    ));
+  }
+
+  if (products.length && stock) {
+    content = products
+      .filter((product) => product.status === true)
+      .map((product) => <ProductCard key={product._id} product={product} />);
+  }
 
   return (
     <div className="max-w-7xl gap-14 mx-auto my-10">
@@ -51,9 +65,7 @@ const Home = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10">
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
+        {content}
       </div>
     </div>
   );
