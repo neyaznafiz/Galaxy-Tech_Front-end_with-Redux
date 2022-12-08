@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard";
 import {
   toggleBrand,
   toggleStock,
 } from "../../redux/actionCreators/filterActions";
+import fetchProduct from "../../redux/thunk/products/fetchProducts";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   // console.log(products);
-  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
   const filters = useSelector((state) => state.filter.filters);
+  const dispatch = useDispatch();
   const { brands, stock } = filters;
   // console.log(brands, stock);
 
   const activeClass = "text-white bg-[#ccac00] border-white";
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.data));
-  }, []);
+    dispatch(fetchProduct());
+  }, [dispatch]);
 
   let content;
 
-  if (products.length) {
+  if (products?.length) {
     content = products.map((product) => (
       <ProductCard key={product._id} product={product} />
     ));
   }
 
-  if (products.length && (stock || brands.length)) {
+  if (products?.length && (stock || brands?.length)) {
     content = products
       .filter((product) => {
         if (stock) {
@@ -39,7 +39,7 @@ const Home = () => {
         return product;
       })
       .filter((product) => {
-        if (brands.length) {
+        if (brands?.length) {
           return brands.includes(product.brand);
         }
         return product;
