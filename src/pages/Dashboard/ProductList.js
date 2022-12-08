@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchProduct from "../../redux/thunk/products/fetchProducts";
 
@@ -7,11 +7,7 @@ const ProductList = () => {
   const dispatch = useDispatch()
   const products = useSelector((state)=> state.product.products)
 
-
   useEffect(() => {
-    // fetch("https://galaxy-techserver-production.up.railway.app/products")
-    //   .then((res) => res.json())
-    //   .then((data) => setProducts(data.data));
     dispatch(fetchProduct())
   },[dispatch]);
 

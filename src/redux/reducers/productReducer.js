@@ -1,4 +1,5 @@
 import {
+  ADD_PRODUCT,
   ADD_TO_CART,
   LOAD_PRODUCT,
   REMOVE_FROM_CART,
@@ -15,10 +16,18 @@ const productReducer = (state = initialState, action) => {
   console.log(state);
   // console.log(selectedProduct)
   switch (action.type) {
+    // load product after fetch
     case LOAD_PRODUCT:
       return {
         ...state,
         products: action.payload,
+      };
+
+    // add product
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.payload],
       };
 
     // add to cart
