@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCT,
   ADD_TO_CART,
+  DELETE_PRODUCT,
   LOAD_PRODUCT,
   REMOVE_FROM_CART,
 } from "../actionTypes/actionTypes";
@@ -28,6 +29,15 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: [...state.products, action.payload],
+      };
+
+    // delete product
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter(
+          (product) => product._id !== action.payload
+        ),
       };
 
     // add to cart
